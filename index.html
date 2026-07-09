@@ -1,52 +1,453 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Edger — Terms of Service</title>
-	<style>
-		body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 20px;color:#111}
-		h1,h2{color:#0b63a8}
-		footer{margin-top:40px;font-size:0.9rem;color:#555}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — Edger Bot</title>
+    
+    <!-- Favicon (website icon) using the same GIF -->
+    <link rel="icon" type="image/gif" href="https://cdn.discordapp.com/attachments/1414665739457134765/1524855436333809756/E.gif?ex=6a5143ca&is=6a4ff24a&hm=b81c2ad902f2acd4dc72b953cb58a80f90f6ae501f1dc56c9ec96b004341dd9b&">
+    
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #14141f;
+            --surface-raised: #1c1c2a;
+            --border: #2a2a3a;
+            --text-primary: #e8e8ed;
+            --text-secondary: #a0a0b8;
+            --accent: #ff5e5b;
+            --accent-glow: rgba(255, 94, 91, 0.25);
+            --accent-soft: #ff7b78;
+            --green: #4ade80;
+            --radius: 12px;
+            --transition: 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.25rem;
+                border-radius: 16px;
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Profile picture (GIF) styling */
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--surface-raised);
+            border: 2px solid var(--border);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transition: transform var(--transition);
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .bot-name {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.15rem;
+        }
+
+        .bot-name .accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+        }
+
+        .badge {
+            background: var(--surface-raised);
+            border: 1px solid var(--border);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.03em;
+        }
+
+        .badge.highlight {
+            border-color: var(--accent);
+            color: var(--accent-soft);
+            background: rgba(255, 94, 91, 0.06);
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2 .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--surface-raised);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-soft);
+            flex-shrink: 0;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.55rem;
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-glow);
+            transform: translateY(-50%);
+        }
+
+        strong {
+            color: #d4d4e8;
+            font-weight: 650;
+        }
+
+        .highlight-box {
+            background: var(--surface-raised);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.2rem 1.4rem;
+            margin: 1.2rem 0;
+            font-size: 0.93rem;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: #c8c8da;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .footer a {
+            color: var(--accent-soft);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-	<h1>Edger — Terms of Service</h1>
-	<p>Effective date: 2026-07-09</p>
 
-	<h2>1. Introduction</h2>
-	<p>These Terms of Service ("Terms") govern your use of Edger (the "Bot"), provided by its owner. By accessing or using Edger you agree to these Terms.</p>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <!-- Replaced the shield emoji with the actual GIF -->
+            <div class="logo-icon">
+                <img src="https://cdn.discordapp.com/attachments/1414665739457134765/1524855436333809756/E.gif?ex=6a5143ca&is=6a4ff24a&hm=b81c2ad902f2acd4dc72b953cb58a80f90f6ae501f1dc56c9ec96b004341dd9b&" alt="Edger Bot Avatar">
+            </div>
+            <h1 class="bot-name">Edger<span class="accent">.</span></h1>
+            <p class="tagline">Automod &amp; Antinuke — Cutting‑Edge Moderation</p>
+            <div class="badge-row">
+                <span class="badge highlight">Automod</span>
+                <span class="badge highlight">Antinuke</span>
+                <span class="badge">Moderation</span>
+                <span class="badge">Discord Bot</span>
+            </div>
+        </div>
 
-	<h2>2. Acceptable Use</h2>
-	<ul>
-		<li>Do not use Edger to create, distribute, or facilitate illegal activity.</li>
-		<li>Do not attempt to reverse-engineer, exploit, or otherwise harm the Bot or its infrastructure.</li>
-		<li>Users must not submit hateful, harassing, sexually explicit, or violent content requests.</li>
-	</ul>
+        <p class="last-updated"><strong>Last Updated:</strong> July 9, 2026</p>
 
-	<h2>3. Content and Accuracy</h2>
-	<p>Edger provides information and assistance that may be incomplete or inaccurate. You are responsible for validating critical information before relying on it. The Bot's outputs do not constitute professional advice.</p>
+        <!-- (rest of sections unchanged) -->
+        <section>
+            <h2><span class="section-number">1</span> Introduction &amp; Acceptance</h2>
+            <p>
+                Welcome to <strong>Edger</strong> (the "Bot"), a Discord moderation bot offering <strong>automod</strong> and <strong>antinuke</strong> capabilities. The name "Edger" is derived from the word <em>Edge</em>, reflecting our commitment to providing sharp, precise, and cutting‑edge protection for your Discord communities.
+            </p>
+            <p>
+                By inviting Edger to your Discord server or using any of its features, you ("you", "your", "Server Administrator", or "User") agree to be bound by these Terms of Service ("Terms"). If you do not agree with any part of these Terms, you must immediately remove the Bot from your server and cease all use.
+            </p>
+            <div class="highlight-box">
+                <p>⚠️ <strong>Important:</strong> Edger is designed exclusively for <strong>moderation purposes</strong> — including automated message filtering (automod) and anti‑server‑destruction measures (antinuke). Misuse of the Bot for harassment, spamming, or any activity violating Discord's Terms of Service is strictly prohibited.</p>
+            </div>
+        </section>
 
-	<h2>4. Privacy</h2>
-	<p>Interactions may be logged for improvement and moderation. Do not share sensitive personal data in requests. For details, refer to the project's privacy policy (if available).</p>
+        <section>
+            <h2><span class="section-number">2</span> Bot Functionality &amp; Scope</h2>
+            <p>Edger provides the following core moderation services:</p>
+            <ul>
+                <li><strong>Automod:</strong> Automated detection and handling of unwanted messages, spam, offensive content, link filtering, and customizable word/phrase blacklists.</li>
+                <li><strong>Antinuke:</strong> Real‑time protection against mass‑ban, mass‑kick, mass‑channel deletion, mass‑role deletion, webhook abuse, and other "nuke" style attacks on your Discord server.</li>
+                <li><strong>Logging &amp; Alerts:</strong> Detailed logging of moderation actions, suspicious activities, and antinuke triggers for server staff review.</li>
+                <li><strong>Punishment Actions:</strong> Configurable responses including warnings, mutes, kicks, bans, and quarantine measures based on detected violations.</li>
+            </ul>
+            <p>
+                <strong>We reserve the right</strong> to modify, add, or remove features at any time without prior notice. Edger is provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis. While we strive for reliability, we do not guarantee 100% uptime or flawless detection of every malicious action.
+            </p>
+        </section>
 
-	<h2>5. Intellectual Property</h2>
-	<p>All rights in the Bot's code, branding, and related content are owned by the project owner unless otherwise stated. You may not claim ownership of the Bot or its underlying models.</p>
+        <section>
+            <h2><span class="section-number">3</span> User &amp; Server Administrator Responsibilities</h2>
+            <p>As a server administrator or user interacting with Edger, you agree to the following:</p>
+            <ul>
+                <li><strong>Proper Configuration:</strong> You are solely responsible for configuring Edger's automod and antinuke settings appropriately for your server. Misconfiguration may lead to unintended punishments or gaps in protection.</li>
+                <li><strong>Compliance with Discord ToS:</strong> Your use of Edger must fully comply with <strong>Discord's Terms of Service</strong> and <strong>Community Guidelines</strong>. Edger must not be used to facilitate, encourage, or enable ToS‑violating behavior.</li>
+                <li><strong>Permission Management:</strong> You must ensure Edger is granted only the necessary permissions it requires to function. Granting excessive or dangerous permissions is done at your own risk.</li>
+                <li><strong>Liability for Actions:</strong> You acknowledge that Edger executes moderation actions based on your configuration. You bear full responsibility for the consequences of those actions, including wrongful kicks, bans, or message deletions.</li>
+                <li><strong>No Abuse:</strong> You shall not attempt to exploit, reverse‑engineer, overload, or otherwise abuse Edger's systems, API endpoints, or infrastructure.</li>
+            </ul>
+        </section>
 
-	<h2>6. Liability</h2>
-	<p>The Bot is provided "as-is." To the maximum extent permitted by law, the owner disclaims all warranties and is not liable for damages arising from use of Edger.</p>
+        <section>
+            <h2><span class="section-number">4</span> Data Collection &amp; Privacy</h2>
+            <p>Edger processes and temporarily stores certain data to provide its automod and antinuke services. By using Edger, you acknowledge and consent to the following data practices:</p>
+            <ul>
+                <li><strong>Server IDs &amp; Configuration:</strong> Your server's ID, channel IDs, role IDs, and your custom automod/antinuke settings are stored to persist your configuration.</li>
+                <li><strong>User IDs:</strong> User IDs may be logged in connection with moderation actions (warns, mutes, kicks, bans) and antinuke triggers for auditing purposes.</li>
+                <li><strong>Message Content (Transient):</strong> For automod functionality, message content is scanned in real‑time. Content is <strong>not permanently stored</strong> unless it triggers a moderation action, in which case a snippet may be retained in logs for evidence.</li>
+                <li><strong>No Selling of Data:</strong> We do <strong>not</strong> sell, share, or monetize any collected data with third parties. Data is used exclusively for Bot functionality and improvement.</li>
+                <li><strong>Data Retention:</strong> Logged data is retained for a reasonable period (typically up to 30 days) for moderation review, after which it is purged automatically.</li>
+                <li><strong>Data Removal Requests:</strong> Server administrators may request deletion of their server's data by removing the Bot and contacting us. Certain anonymized usage statistics may be retained indefinitely.</li>
+            </ul>
+            <div class="highlight-box">
+                <p>🔒 <strong>Privacy Commitment:</strong> Edger's antinuke system monitors server events (member joins/leaves, channel changes, role changes) to detect anomalies. This monitoring is essential for protection and cannot be individually opted out of while the Bot remains in your server.</p>
+            </div>
+        </section>
 
-	<h2>7. Moderation and Enforcement</h2>
-	<p>The owner may suspend or block access for users who violate these Terms or for safety and legal reasons.</p>
+        <section>
+            <h2><span class="section-number">5</span> Antinuke Specific Terms</h2>
+            <p>The antinuke feature is a powerful tool designed to prevent catastrophic damage to your Discord server. The following additional terms apply:</p>
+            <ul>
+                <li><strong>Quarantine &amp; Emergency Actions:</strong> When Edger detects a likely nuke attempt, it may automatically quarantine offending users, restore deleted channels/roles (to the extent possible via audit log data), and lock down the server. These actions are aggressive by design.</li>
+                <li><strong>False Positives:</strong> While Edger's antinuke algorithms are tuned for accuracy, false positives may occur. Server administrators are responsible for reviewing antinuke logs and reversing any unintended actions.</li>
+                <li><strong>No Guarantee of Prevention:</strong> Edger significantly reduces the risk of nuke attacks but cannot guarantee complete prevention. Determined attackers with legitimate access or compromised administrator accounts may still cause damage.</li>
+                <li><strong>Rate Limits &amp; API Constraints:</strong> Discord API rate limits may affect Edger's ability to respond instantaneously during a large‑scale nuke attack. We are not liable for damages incurred during such rate‑limited windows.</li>
+            </ul>
+        </section>
 
-	<h2>8. Changes to Terms</h2>
-	<p>The owner may modify these Terms at any time. Continued use of the Bot after changes indicates acceptance.</p>
+        <section>
+            <h2><span class="section-number">6</span> Limitation of Liability</h2>
+            <p>
+                <strong>To the fullest extent permitted by applicable law:</strong> Edger, its developers, owners, and affiliates shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages — including but not limited to loss of data, server damage, community disruption, or unauthorized access — arising from the use of or inability to use the Bot, even if advised of the possibility of such damages.
+            </p>
+            <p>
+                You expressly agree that your use of Edger is at your <strong>sole risk</strong>. The Bot is a tool; its effectiveness depends on proper configuration and the inherent limitations of automated moderation systems.
+            </p>
+        </section>
 
-	<h2>9. Contact</h2>
-	<p>For questions or to report abuse, contact the project owner via the repository contact methods.</p>
+        <section>
+            <h2><span class="section-number">7</span> Termination &amp; Bot Removal</h2>
+            <p>
+                We reserve the absolute right to:
+            </p>
+            <ul>
+                <li><strong>Terminate or suspend</strong> Edger's service to any server, at any time, with or without cause and without prior notice.</li>
+                <li><strong>Blacklist</strong> servers or users from using Edger based on abuse, Terms violations, or behavior that compromises the Bot's integrity or reputation.</li>
+                <li><strong>Cease operations</strong> of the Bot entirely at our discretion. In such an event, we will endeavor to provide reasonable notice where feasible.</li>
+            </ul>
+            <p>
+                You may stop using Edger at any time by removing (kicking/banning) the Bot from your Discord server. Upon removal, your server's stored configuration data will be scheduled for deletion in accordance with our data retention policy.
+            </p>
+        </section>
 
-	<footer>
-		<p>By using Edger you acknowledge that you have read and agree to these Terms.</p>
-	</footer>
+        <section>
+            <h2><span class="section-number">8</span> Changes to These Terms</h2>
+            <p>
+                We may update or modify these Terms of Service from time to time. The "Last Updated" date at the top of this document will reflect the most recent changes. <strong>Continued use of Edger after any changes constitutes your acceptance</strong> of the revised Terms. It is your responsibility to review these Terms periodically.
+            </p>
+            <p>
+                For material changes, we will make reasonable efforts to notify server administrators through Edger's logging channels or via a notice on our official support server (if applicable).
+            </p>
+        </section>
+
+        <hr class="divider">
+
+        <section>
+            <h2><span class="section-number">9</span> Contact &amp; Support</h2>
+            <p>
+                If you have questions, concerns, or data removal requests regarding these Terms or Edger's operation, please reach out through one of the following channels:
+            </p>
+            <ul>
+                <li><strong>Support Server:</strong> Join our official Discord support community (link provided via the Bot's profile or documentation).</li>
+                <li><strong>Direct Message:</strong> You may contact the Bot owner/developer through Discord if the option is available.</li>
+                <li><strong>Email:</strong> [edger-support@example.com] <span style="color: #6b6b80; font-size: 0.85rem;">(placeholder — replace with actual contact)</span></li>
+            </ul>
+            <div class="highlight-box">
+                <p>✅ <strong>Acknowledgment:</strong> By having Edger in your server, you confirm that you have read, understood, and agree to be bound by these Terms of Service. Thank you for trusting Edger to help keep your community safe — stay sharp, stay on the <em>edge</em>.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 <strong>Edger Bot</strong> — Powered by precision. Inspired by the <em>Edge</em>. &nbsp;| &nbsp;
+            <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Support Server</a>
+        </p>
+        <p style="margin-top: 0.3rem;">Edger is an independent third‑party bot and is not affiliated with or endorsed by Discord Inc.</p>
+    </div>
+
 </body>
 </html>
